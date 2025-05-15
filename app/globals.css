@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  --grid-background-rgb: 234, 234, 234;
+  --tile-size: 40px;
+  /* Gradient colors */
+  --gradient-tl-color: rgba(121, 163, 224, 0.15); /* Light Purplish Blue */
+  --gradient-br-color: rgba(121, 224, 163, 0.15); /* Light Greenish */
+  /* Colors for scattered dots */
+  --dot-color-1: rgba(100, 150, 255, 0.2);
+  --dot-color-2: rgba(255, 150, 180, 0.2);
+  --dot-color-3: rgba(150, 220, 150, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 10, 10, 10;
+    --background-end-rgb: 10, 10, 10;
+    --grid-background-rgb: 40, 40, 40;
+    /* Dark mode gradients */
+    --gradient-tl-color: rgba(80, 110, 170, 0.2);
+    --gradient-br-color: rgba(80, 170, 110, 0.2);
+    /* Dark mode dot colors */
+    --dot-color-1: rgba(80, 120, 200, 0.25);
+    --dot-color-2: rgba(200, 120, 150, 0.25);
+    --dot-color-3: rgba(120, 180, 120, 0.25);
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-start-rgb));
+}
+
+.gridded-background {
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgb(var(--background-start-rgb));
+  /* Layered backgrounds: sparse dots first, then grid lines */
+  background-image:
+    /* Colored dots layers */
+    radial-gradient(circle at 25% 30%, var(--dot-color-1) 3px, transparent 4px),
+    radial-gradient(circle at 70% 65%, var(--dot-color-2) 3px, transparent 4px),
+    radial-gradient(circle at 45% 85%, var(--dot-color-3) 3px, transparent 4px),
+    /* Base grid lines (last) */
+    linear-gradient(rgb(var(--grid-background-rgb)) 0.5px, transparent 0.5px),
+    linear-gradient(to right, rgb(var(--grid-background-rgb)) 0.5px, rgb(var(--background-start-rgb)) 0.5px);
+
+  background-size:
+    /* Size/repeat area for dot patterns (larger than grid) */
+    200px 200px, /* Pattern 1 */
+    180px 180px, /* Pattern 2 */
+    220px 220px, /* Pattern 3 */
+    /* Base grid size */
+    var(--tile-size) var(--tile-size),
+    var(--tile-size) var(--tile-size);
+
+  background-position:
+    /* Offset the dot patterns */
+    0 0,
+    30px 50px, /* Offset pattern 2 */
+    -20px 80px, /* Offset pattern 3 */
+    /* Base grid position */
+    0 0,
+    0 0;
+  /* Add radial gradient overlay */
+  position: relative;
+  overflow: hidden; /* Ensure gradients don't overflow */
+
+  /* Add animation for moving dots */
+  animation: move-dots 20s linear infinite;
+}
+
+/* Keyframes for moving dots */
+@keyframes move-dots {
+  0% {
+    background-position:
+      0 0, /* Dot layer 1 */
+      30px 50px, /* Dot layer 2 */
+      -20px 80px, /* Dot layer 3 */
+      0 0, /* Grid layer 1 */
+      0 0; /* Grid layer 2 */
+  }
+  100% {
+    background-position:
+      200px 200px, /* Dot layer 1 - End position matching its size */
+      210px 230px, /* Dot layer 2 - End position (offset + size) */
+      180px 300px, /* Dot layer 3 - End position (offset + size) */
+      0 0, /* Grid layer 1 */
+      0 0; /* Grid layer 2 */
+  }
+}
+
+.gridded-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, var(--gradient-tl-color), transparent 50%),
+              radial-gradient(circle at bottom right, var(--gradient-br-color), transparent 50%);
+  background-size: 200% 200%; /* Make gradients larger */
+  animation: pulse-gradient 8s infinite ease-in-out; /* Subtle animation */
+}
+
+/* Optional subtle animation for gradients */
+@keyframes pulse-gradient {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+} 

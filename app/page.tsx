@@ -38,7 +38,7 @@ export default function HomePage() {
       id: 'single',
       title: 'Single Video',
       price: '$10',
-      description: 'One 15-second baby podcast video',
+      description: "Submit a baby podcast or your own video and we'll turn it into an adorable baby video (up to 15 seconds, HD, ready in 24 hours).",
       features: [
         '15-second video clip',
         'HD quality',
@@ -51,7 +51,7 @@ export default function HomePage() {
       id: 'triple',
       title: 'Triple Pack',
       price: '$25',
-      description: 'Three 15-second baby podcast videos',
+      description: "Submit three baby podcasts or your own videos and get three adorable baby videos (up to 15 seconds each, HD, ready in 48 hours).",
       features: [
         'Three 15-second video clips',
         'HD quality',
@@ -333,6 +333,29 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+
+      {/* Waitlist Section */}
+      <section className="max-w-2xl mx-auto my-12 p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-lg flex flex-col items-center">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-3xl">🐻</span>
+          <h2 className="text-3xl font-bold text-center">Early Access: Create Your Own AI Baby Videos!</h2>
+          <span className="text-3xl">🎬</span>
+        </div>
+        <p className="mb-6 text-gray-600 dark:text-gray-300 text-center text-lg">
+          Be the first to try our upcoming tool that lets you generate  AI baby videos in seconds. Join the waitlist for exclusive early access and updates!
+        </p>
+        <iframe
+          src="https://tally.so/r/nrWAPv?hideTitle=1"
+          width="100%"
+          height="300"
+          frameBorder="0"
+          marginHeight={0}
+          marginWidth={0}
+          title="Minibearco Waitlist"
+          className="rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm"
+          style={{ minHeight: 300 }}
+        ></iframe>
+      </section>
 
       {/* Pricing Section */}
       <div id="pricing" className="w-full py-16">

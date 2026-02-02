@@ -6,8 +6,8 @@ import Script from 'next/script';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Baby Video Generator",
-  description: "Generate baby videos using AI",
+  title: "Vortox - AI Dancing Video Generator",
+  description: "Transform any video into viral dancing AI content",
 };
 
 export default function RootLayout({
@@ -36,4 +36,4 @@ export default function RootLayout({
       <body className={inter.className}>{children}</body>
     </html>
   );
-} 
+}

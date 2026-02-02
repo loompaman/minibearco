@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         {/* Google tag (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-5PGS4V28G2"
+          src="https://www.googletagmanager.com/gtag/js?id=G-5YF6MWEVQB"
           strategy="afterInteractive"
         />
         <Script id="gtag-init" strategy="afterInteractive">
@@ -29,7 +29,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-5PGS4V28G2');
+            gtag('config', 'G-5YF6MWEVQB');
           `}
         </Script>
       </head>
